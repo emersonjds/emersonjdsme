@@ -82,11 +82,11 @@ export default function Contact() {
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
               whileHover={{
-                y: -6,
-                borderColor: "rgba(124, 58, 237, 0.6)",
+                y: -8,
+                borderColor: "rgba(124, 58, 237, 0.8)",
               }}
-              whileTap={{ scale: 0.92 }}
-              className="card p-6 md:p-8 text-slate-500 hover:text-purple-400 transition-colors duration-300"
+              whileTap={{ scale: 0.9 }}
+              className="card p-6 md:p-8 text-slate-500 hover:text-purple-400 transition-colors duration-300 shadow-soft hover:shadow-glow-intense"
               aria-label={`Visit my ${link.label} profile`}
             >
               {link.icon}

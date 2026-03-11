@@ -126,17 +126,30 @@ body {
   to { opacity: 1; filter: blur(0); }
 }
 
+@keyframes text-glow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(124, 58, 237, 0.3),
+                 0 0 20px rgba(124, 58, 237, 0.15);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(124, 58, 237, 0.6),
+                 0 0 40px rgba(124, 58, 237, 0.3);
+  }
+}
+
 /* ════════════════════════════════════════════════════════════════ */
 /* GRADIENT & SPECIAL TEXT EFFECTS                                  */
 /* ════════════════════════════════════════════════════════════════ */
 
 .gradient-text {
-  background: linear-gradient(135deg, #7c3aed, #c084fc, #f472b6, #7c3aed);
-  background-size: 300% 300%;
-  animation: gradient-shift 4s ease infinite;
+  background: linear-gradient(135deg, #7c3aed 0%, #c084fc 25%, #f472b6 50%, #a855f7 75%, #7c3aed 100%);
+  background-size: 400% 400%;
+  animation: gradient-shift 5s ease infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+  filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.2));
 }
 
 /* ════════════════════════════════════════════════════════════════ */
@@ -286,9 +299,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: clamp(3rem, 10vw, 9rem);
+  font-size: clamp(3rem, 12vw, 13rem);
   font-weight: 900;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 30px rgba(124, 58, 237, 0.2),
+               0 4px 60px rgba(124, 58, 237, 0.1);
 }
 
 h2 {

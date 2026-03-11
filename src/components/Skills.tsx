@@ -51,7 +51,7 @@ function SkillCard({
     >
       {/* Background Glow */}
       <div
-        className="absolute inset-0 rounded-[20px] opacity-0 group-hover:opacity-5 transition-opacity duration-500"
+        className="absolute inset-0 rounded-[20px] opacity-0 group-hover:opacity-10 transition-opacity duration-500"
         style={{ background: category.accent }}
         aria-hidden="true"
       />

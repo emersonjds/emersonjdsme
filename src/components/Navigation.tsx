@@ -75,7 +75,7 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div
-            className="hidden md:flex items-center gap-2 bg-black/30 border border-white/10 rounded-full px-3 py-2 backdrop-blur-md"
+            className="hidden md:flex items-center gap-2 bg-black/40 border border-white/10 rounded-full px-3 py-2 backdrop-blur-md shadow-soft"
             role="list"
           >
             {navItems.map((item) => (
@@ -88,13 +88,13 @@ export default function Navigation() {
                     ? "text-white"
                     : "text-slate-400 hover:text-slate-200"
                 }`}
-                whileTap={{ scale: 0.98 }}
+                whileTap={{ scale: 0.96 }}
                 aria-current={activeSection === item.href.slice(1) ? "page" : undefined}
               >
                 {activeSection === item.href.slice(1) && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-0 rounded-full bg-white/10 border border-white/20"
+                    className="absolute inset-0 rounded-full bg-white/10 border border-white/20 shadow-glow"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}

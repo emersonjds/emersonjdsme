@@ -58,8 +58,8 @@ function ProjectCard({
     >
       <motion.a
         href={project.link}
-        whileHover={{ y: -8 }}
-        className="card p-8 md:p-10 h-full block relative overflow-hidden"
+        whileHover={{ y: -10 }}
+        className="card p-8 md:p-10 h-full block relative overflow-hidden shadow-medium hover:shadow-glow-intense transition-all duration-500 group/card"
         aria-label={`View project: ${project.title}`}
       >
         {/* Accent Background */}

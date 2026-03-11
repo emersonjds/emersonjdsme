@@ -105,10 +105,10 @@ export default function About() {
                   delay: 0.5 + i * 0.1,
                 }}
                 whileHover={{
-                  y: -6,
-                  boxShadow: "0 20px 40px rgba(124, 58, 237, 0.2)",
+                  y: -8,
+                  boxShadow: "0 20px 50px rgba(124, 58, 237, 0.3), 0 0 40px rgba(124, 58, 237, 0.2)",
                 }}
-                className="card p-8 md:p-10 text-center cursor-default"
+                className="card p-8 md:p-10 text-center cursor-default shadow-soft hover:shadow-glow-intense transition-all duration-500"
               >
                 <motion.div
                   className="text-5xl md:text-6xl font-bold gradient-text mb-4"
