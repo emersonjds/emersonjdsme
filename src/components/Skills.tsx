@@ -46,19 +46,19 @@ function SkillCard({
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="card p-8 sm:p-10 group"
+      className="card p-8 md:p-10 group relative"
       aria-label={`${category.title} skills`}
     >
-      {/* Card Glow Background */}
+      {/* Background Glow */}
       <div
-        className="absolute inset-0 rounded-[16px] opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+        className="absolute inset-0 rounded-[20px] opacity-0 group-hover:opacity-5 transition-opacity duration-500"
         style={{ background: category.accent }}
         aria-hidden="true"
       />
 
       {/* Header */}
-      <div className="relative flex items-center justify-between mb-6">
-        <h3 className="text-lg sm:text-xl font-semibold text-white group-hover:text-accent-light transition-colors duration-300">
+      <div className="relative flex items-center justify-between mb-8">
+        <h3 className="text-xl md:text-2xl font-semibold text-white group-hover:text-purple-400 transition-colors duration-300">
           {category.title}
         </h3>
         <motion.span
@@ -73,23 +73,23 @@ function SkillCard({
 
       {/* Accent Line */}
       <motion.div
-        className="h-[1px] mb-6 rounded-full"
+        className="h-0.5 mb-8 rounded-full"
         initial={{ width: 40 }}
         whileHover={{ width: "100%" }}
-        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+        transition={{ duration: 0.5 }}
         style={{ background: category.accent }}
         aria-hidden="true"
       />
 
-      {/* Skills List */}
-      <ul className="relative flex flex-wrap gap-2.5" aria-label={`${category.title} technologies`}>
+      {/* Skills */}
+      <ul className="relative flex flex-wrap gap-3" aria-label={`${category.title} technologies`}>
         {category.skills.map((skill, i) => (
           <motion.li
             key={skill}
             initial={{ opacity: 0, y: 5 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.3, delay: 0.2 + i * 0.05 }}
-            className="tag"
+            className="px-3 py-2 rounded-lg text-xs font-mono bg-purple-950/30 border border-purple-900/40 text-purple-300 hover:border-purple-700 hover:text-purple-200 transition-all cursor-default"
             whileHover={{ scale: 1.05, y: -2 }}
           >
             {skill}
@@ -105,27 +105,26 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="skills" aria-label="Technical skills">
+    <section id="skills" className="relative py-32 md:py-40 lg:py-48" aria-label="Technical skills">
       <div className="section-divider" />
-      <div className="wrap py-28 sm:py-40" ref={ref}>
+      <div className="wrap" ref={ref}>
+        {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mb-16 sm:mb-20"
+          className="mb-20 md:mb-24"
         >
-          <span
-            className="text-accent text-xs font-mono tracking-[0.25em] uppercase block mb-4"
-            aria-hidden="true"
-          >
+          <span className="text-purple-500 text-xs font-mono tracking-[0.25em] uppercase block mb-6">
             Skills
           </span>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white">
             Tech <span className="gradient-text">Stack</span>
           </h2>
         </motion.header>
 
-        <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
+        {/* Grid */}
+        <div className="grid sm:grid-cols-2 gap-8 md:gap-10">
           {skillCategories.map((category, i) => (
             <SkillCard key={category.title} category={category} index={i} />
           ))}

@@ -34,55 +34,30 @@ const socialLinks = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const linkVariants = {
-  hidden: { opacity: 0, y: 20, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
-
 export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="contact" aria-label="Contact information">
+    <section id="contact" className="relative py-32 md:py-40 lg:py-48" aria-label="Contact information">
       <div className="section-divider" />
-      <div className="wrap py-28 sm:py-40 text-center" ref={ref}>
+      <div className="wrap text-center" ref={ref}>
         {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
+          className="mb-20 md:mb-24"
         >
-          <span
-            className="text-accent text-xs font-mono tracking-[0.25em] uppercase block mb-4"
-            aria-hidden="true"
-          >
+          <span className="text-purple-500 text-xs font-mono tracking-[0.25em] uppercase block mb-6">
             Contact
           </span>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white leading-tight">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight mb-8">
             Let&apos;s create something
             <br />
             <span className="gradient-text">extraordinary</span>
           </h2>
-          <p className="text-text-muted text-lg sm:text-xl max-w-lg mx-auto mb-14 sm:mb-16 leading-relaxed">
+          <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Got a project in mind? I&apos;d love to hear about it.
             Let&apos;s discuss how we can work together.
           </p>
@@ -90,26 +65,28 @@ export default function Contact() {
 
         {/* Social Links */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="flex items-center justify-center gap-5 mb-14 flex-wrap"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex items-center justify-center gap-6 mb-16 flex-wrap"
           role="navigation"
           aria-label="Social media links"
         >
-          {socialLinks.map((link) => (
+          {socialLinks.map((link, i) => (
             <motion.a
               key={link.label}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              variants={linkVariants}
+              initial={{ opacity: 0, y: 20, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
               whileHover={{
                 y: -6,
                 borderColor: "rgba(124, 58, 237, 0.6)",
               }}
               whileTap={{ scale: 0.92 }}
-              className="card p-5 sm:p-6 text-text-muted hover:text-accent-light transition-colors duration-300"
+              className="card p-6 md:p-8 text-slate-500 hover:text-purple-400 transition-colors duration-300"
               aria-label={`Visit my ${link.label} profile`}
             >
               {link.icon}
@@ -122,19 +99,18 @@ export default function Contact() {
           href="mailto:emerson@example.com"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          whileHover={{ scale: 1.05, y: -4 }}
           whileTap={{ scale: 0.95 }}
-          className="btn-primary text-base inline-flex group"
+          className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-lg border border-purple-500/60 hover:border-purple-400 hover:shadow-[0_0_50px_rgba(124,58,237,0.6)] transition-all duration-300"
           aria-label="Send me an email"
         >
-          Say Hello
+          <span>Say Hello</span>
           <motion.svg
             width="18"
             height="18"
             viewBox="0 0 16 16"
             fill="none"
-            className="ml-2.5"
             aria-hidden="true"
             animate={{ x: [0, 2, 0] }}
             transition={{ duration: 2, repeat: Infinity }}

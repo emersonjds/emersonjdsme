@@ -15,42 +15,42 @@ export default function About() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="about" aria-label="About me">
+    <section id="about" className="relative py-32 md:py-40 lg:py-48" aria-label="About me">
       <div className="section-divider" />
-      <div className="wrap py-28 sm:py-40" ref={ref}>
+      <div className="wrap" ref={ref}>
+        {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mb-16 sm:mb-20"
+          className="mb-20 md:mb-24"
         >
           <span
-            className="text-accent text-xs font-mono tracking-[0.25em] uppercase block mb-4"
+            className="text-purple-500 text-xs font-mono tracking-[0.25em] uppercase block mb-6"
             aria-hidden="true"
           >
             About
           </span>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-            Turning ideas into{" "}
-            <span className="gradient-text">reality</span>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight">
+            Turning ideas into <span className="gradient-text">reality</span>
           </h2>
         </motion.header>
 
         {/* Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 mb-16 sm:mb-20">
-          {/* Text Content */}
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+          {/* Text */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="space-y-6"
+            className="space-y-8"
           >
-            <p className="text-text-secondary text-lg sm:text-xl leading-relaxed">
+            <p className="text-slate-300 text-lg md:text-xl leading-relaxed">
               I&apos;m a software engineer who lives at the intersection of
               engineering and design. I build applications that are not only
               technically excellent but also intuitive and delightful to use.
             </p>
-            <p className="text-text-muted text-lg sm:text-xl leading-relaxed">
+            <p className="text-slate-400 text-lg md:text-xl leading-relaxed">
               With deep expertise in React, Next.js, TypeScript, Node.js, and Go,
               I architect solutions that scale. Clean code, performance, and
               great user experiences are what I live for.
@@ -60,13 +60,13 @@ export default function About() {
                 href="#contact"
                 whileHover={{ x: 6 }}
                 whileTap={{ x: 3 }}
-                className="text-accent-light hover:text-white transition-colors inline-flex items-center gap-3 text-base font-medium group"
+                className="text-purple-400 hover:text-purple-300 transition-colors inline-flex items-center gap-3 text-base font-semibold group"
                 aria-label="Navigate to contact section"
               >
                 Let&apos;s work together
                 <motion.svg
-                  width="16"
-                  height="16"
+                  width="18"
+                  height="18"
                   viewBox="0 0 16 16"
                   fill="none"
                   aria-hidden="true"
@@ -85,12 +85,12 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Stats Cards */}
+          {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="grid grid-cols-2 gap-5"
+            className="grid grid-cols-2 gap-6"
             role="list"
             aria-label="Statistics"
           >
@@ -103,16 +103,15 @@ export default function About() {
                 transition={{
                   duration: 0.6,
                   delay: 0.5 + i * 0.1,
-                  ease: [0.4, 0, 0.2, 1],
                 }}
                 whileHover={{
                   y: -6,
                   boxShadow: "0 20px 40px rgba(124, 58, 237, 0.2)",
                 }}
-                className="card p-8 sm:p-10 text-center cursor-default"
+                className="card p-8 md:p-10 text-center cursor-default"
               >
                 <motion.div
-                  className="text-4xl sm:text-5xl font-bold gradient-text mb-3"
+                  className="text-5xl md:text-6xl font-bold gradient-text mb-4"
                   aria-hidden="true"
                   initial={{ opacity: 0 }}
                   animate={isInView ? { opacity: 1 } : {}}
@@ -120,7 +119,7 @@ export default function About() {
                 >
                   {stat.value}
                 </motion.div>
-                <div className="text-text-muted text-sm sm:text-base">
+                <div className="text-slate-500 text-sm md:text-base font-medium">
                   <span className="sr-only">{stat.value} </span>
                   {stat.label}
                 </div>

@@ -6,22 +6,13 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.2, delayChildren: 0.1 },
   },
 };
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-    },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
 const wordVariants = {
@@ -29,10 +20,7 @@ const wordVariants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.7,
-      delay: 0.3 + i * 0.15,
-    },
+    transition: { duration: 0.7, delay: 0.3 + i * 0.15 },
   }),
 };
 
@@ -40,8 +28,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex items-center justify-center"
-      style={{ minHeight: "100svh" }}
+      className="relative flex items-center justify-center min-h-screen pt-32 pb-24 md:pt-40 md:pb-32"
       aria-label="Introduction"
     >
       <div className="wrap text-center relative z-10">
@@ -50,9 +37,9 @@ export default function Hero() {
           variants={itemVariants}
           initial="hidden"
           animate="visible"
-          className="blur-in"
+          className="mb-16 md:mb-20"
         >
-          <div className="badge mb-12 sm:mb-14 inline-flex justify-center">
+          <div className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-mono tracking-wider uppercase bg-purple-950/40 border border-purple-900/60 text-purple-300 hover:text-purple-200 transition-colors">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             Available for work
           </div>
@@ -63,9 +50,9 @@ export default function Hero() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="mb-8 sm:mb-10"
+          className="mb-12 md:mb-16 lg:mb-20"
         >
-          <h1 className="text-6xl sm:text-8xl lg:text-9xl font-bold leading-[0.9] tracking-tight">
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-none tracking-tight">
             <motion.span
               custom={0}
               variants={wordVariants}
@@ -88,7 +75,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.8 }}
-          className="text-lg sm:text-xl lg:text-2xl text-text-muted max-w-2xl mx-auto mb-12 sm:mb-14 leading-relaxed"
+          className="text-lg sm:text-xl lg:text-2xl text-slate-400 max-w-2xl mx-auto mb-16 md:mb-20 leading-relaxed"
         >
           Software Engineer crafting performant, beautiful &amp; accessible
           digital experiences with modern technologies.
@@ -99,24 +86,24 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           variants={containerVariants}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6"
           role="group"
           aria-label="Call to action"
         >
           <motion.a
             href="#projects"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, y: -4 }}
             whileTap={{ scale: 0.95 }}
             variants={itemVariants}
-            className="btn-primary w-full sm:w-auto group"
+            className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-lg border border-purple-500/60 hover:border-purple-400 hover:shadow-[0_0_50px_rgba(124,58,237,0.6)] transition-all duration-300 w-full sm:w-auto justify-center relative group"
           >
-            View my work
+            <span className="relative z-10">View my work</span>
             <svg
               width="18"
               height="18"
               viewBox="0 0 16 16"
               fill="none"
-              className="ml-2.5 group-hover:translate-x-1 transition-transform"
+              className="group-hover:translate-x-1 transition-transform"
               aria-hidden="true"
             >
               <path
@@ -130,10 +117,10 @@ export default function Hero() {
           </motion.a>
           <motion.a
             href="#contact"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, y: -4 }}
             whileTap={{ scale: 0.95 }}
             variants={itemVariants}
-            className="btn-secondary w-full sm:w-auto"
+            className="inline-flex items-center gap-3 px-10 py-4 bg-transparent text-slate-300 font-semibold rounded-lg border border-slate-700/80 hover:border-purple-500/60 hover:text-white hover:shadow-[0_0_40px_rgba(124,58,237,0.2)] transition-all duration-300 w-full sm:w-auto justify-center"
           >
             Get in touch
           </motion.a>
@@ -143,20 +130,20 @@ export default function Hero() {
       {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
+        animate={{ opacity: 0.4 }}
         transition={{ delay: 2.5 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2"
         aria-hidden="true"
       >
         <motion.div
           animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 2.5, repeat: Infinity }}
           className="flex flex-col items-center gap-3"
         >
-          <span className="text-[10px] font-mono text-text-muted tracking-[0.3em] uppercase">
+          <span className="text-xs font-mono text-slate-500 tracking-widest uppercase">
             Scroll
           </span>
-          <div className="w-[1px] h-10 bg-gradient-to-b from-text-muted/40 to-transparent" />
+          <div className="w-px h-12 bg-gradient-to-b from-slate-600 to-transparent" />
         </motion.div>
       </motion.div>
     </section>

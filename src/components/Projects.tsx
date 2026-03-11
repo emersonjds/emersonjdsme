@@ -59,42 +59,42 @@ function ProjectCard({
       <motion.a
         href={project.link}
         whileHover={{ y: -8 }}
-        className="block card p-8 sm:p-10 h-full group/card"
+        className="card p-8 md:p-10 h-full block relative overflow-hidden"
         aria-label={`View project: ${project.title}`}
       >
-        {/* Accent Background Gradient */}
+        {/* Accent Background */}
         <div
-          className="absolute inset-0 rounded-[16px] opacity-0 group-hover:opacity-5 transition-opacity duration-500"
+          className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500"
           style={{ background: project.accent }}
           aria-hidden="true"
         />
 
         {/* Accent Line */}
-        <div className="relative flex items-center gap-4 mb-6">
+        <div className="relative flex items-center gap-4 mb-8">
           <motion.div
-            className="h-[2px] rounded-full"
+            className="h-0.5 rounded-full"
             initial={{ width: 32 }}
             whileHover={{ width: 56 }}
-            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.4 }}
             style={{ background: project.accent }}
             aria-hidden="true"
           />
-          <span className="text-xs font-mono text-text-muted tracking-widest flex-shrink-0">
+          <span className="text-xs font-mono text-slate-500 tracking-widest flex-shrink-0">
             {String(index + 1).padStart(2, "0")}
           </span>
         </div>
 
-        {/* Title and Icon */}
-        <div className="relative flex items-start justify-between mb-4">
-          <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight group-hover:text-accent-light transition-colors duration-300">
+        {/* Title & Icon */}
+        <div className="relative flex items-start justify-between mb-6">
+          <h3 className="text-xl md:text-2xl font-semibold text-white group-hover:text-purple-400 transition-colors duration-300">
             {project.title}
           </h3>
           <motion.svg
-            width="20"
-            height="20"
+            width="24"
+            height="24"
             viewBox="0 0 20 20"
             fill="none"
-            className="text-text-muted group-hover:text-accent-light transition-colors duration-300 mt-1.5 ml-4 flex-shrink-0"
+            className="text-slate-500 group-hover:text-purple-400 transition-colors duration-300 flex-shrink-0 mt-1 ml-4"
             whileHover={{ rotate: 45, scale: 1.1 }}
             aria-hidden="true"
           >
@@ -109,19 +109,19 @@ function ProjectCard({
         </div>
 
         {/* Description */}
-        <p className="relative text-text-muted text-base leading-relaxed mb-8">
+        <p className="relative text-slate-400 text-base leading-relaxed mb-8">
           {project.description}
         </p>
 
         {/* Tags */}
-        <ul className="relative flex flex-wrap gap-2.5" aria-label="Technologies used">
+        <ul className="relative flex flex-wrap gap-3" aria-label="Technologies used">
           {project.tags.map((tag, i) => (
             <motion.li
               key={tag}
               initial={{ opacity: 0, y: 5 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.3, delay: 0.2 + i * 0.05 }}
-              className="tag"
+              className="px-3 py-2 rounded-lg text-xs font-mono bg-purple-950/30 border border-purple-900/40 text-purple-300 hover:border-purple-700 hover:text-purple-200 transition-all"
             >
               {tag}
             </motion.li>
@@ -137,27 +137,26 @@ export default function Projects() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="projects" aria-label="Featured projects">
+    <section id="projects" className="relative py-32 md:py-40 lg:py-48" aria-label="Featured projects">
       <div className="section-divider" />
-      <div className="wrap py-28 sm:py-40" ref={ref}>
+      <div className="wrap" ref={ref}>
+        {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mb-16 sm:mb-20"
+          className="mb-20 md:mb-24"
         >
-          <span
-            className="text-accent text-xs font-mono tracking-[0.25em] uppercase block mb-4"
-            aria-hidden="true"
-          >
+          <span className="text-purple-500 text-xs font-mono tracking-[0.25em] uppercase block mb-6">
             Work
           </span>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white">
             Selected <span className="gradient-text">Projects</span>
           </h2>
         </motion.header>
 
-        <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+        {/* Grid */}
+        <div className="grid md:grid-cols-2 gap-8 md:gap-10">
           {projects.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}

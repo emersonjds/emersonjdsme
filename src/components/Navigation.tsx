@@ -51,35 +51,42 @@ export default function Navigation() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "glass-nav py-4" : "py-6"
+          scrolled
+            ? "glass-nav py-4 shadow-lg"
+            : "py-6 bg-transparent"
         }`}
         role="navigation"
         aria-label="Main navigation"
         onKeyDown={handleKeyDown}
       >
         <div className="wrap flex items-center justify-between">
+          {/* Logo */}
           <motion.a
             href="#home"
-            className="text-xl font-bold tracking-tight"
+            className="text-2xl font-bold tracking-tighter"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             aria-label="Emerson - Go to homepage"
           >
             <span className="gradient-text">emerson</span>
-            <span className="text-text-muted">.dev</span>
+            <span className="text-slate-500">.</span>
+            <span className="text-slate-400">dev</span>
           </motion.a>
 
-          {/* Desktop */}
-          <div className="hidden md:flex items-center gap-1 bg-surface border border-border rounded-2xl px-2 py-2" role="list">
+          {/* Desktop Navigation */}
+          <div
+            className="hidden md:flex items-center gap-2 bg-black/30 border border-white/10 rounded-full px-3 py-2 backdrop-blur-md"
+            role="list"
+          >
             {navItems.map((item) => (
               <motion.a
                 key={item.href}
                 href={item.href}
                 role="listitem"
-                className={`relative px-5 py-2.5 text-sm font-medium rounded-xl transition-colors ${
+                className={`relative px-6 py-3 text-sm font-medium rounded-full transition-all ${
                   activeSection === item.href.slice(1)
                     ? "text-white"
-                    : "text-text-muted hover:text-text-secondary"
+                    : "text-slate-400 hover:text-slate-200"
                 }`}
                 whileTap={{ scale: 0.98 }}
                 aria-current={activeSection === item.href.slice(1) ? "page" : undefined}
@@ -87,7 +94,7 @@ export default function Navigation() {
                 {activeSection === item.href.slice(1) && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-0 rounded-xl bg-surface-light border border-border"
+                    className="absolute inset-0 rounded-full bg-white/10 border border-white/20"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -96,7 +103,7 @@ export default function Navigation() {
             ))}
           </div>
 
-          {/* Mobile toggle */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden relative w-8 h-6 flex flex-col justify-between z-50"
@@ -106,21 +113,21 @@ export default function Navigation() {
           >
             <motion.span
               animate={mobileOpen ? { rotate: 45, y: 10 } : { rotate: 0, y: 0 }}
-              className="w-full h-[2px] bg-white block origin-center rounded-full"
+              className="w-full h-0.5 bg-white block origin-center rounded-full"
             />
             <motion.span
               animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="w-full h-[2px] bg-white block rounded-full"
+              className="w-full h-0.5 bg-white block rounded-full"
             />
             <motion.span
               animate={mobileOpen ? { rotate: -45, y: -10 } : { rotate: 0, y: 0 }}
-              className="w-full h-[2px] bg-white block origin-center rounded-full"
+              className="w-full h-0.5 bg-white block origin-center rounded-full"
             />
           </button>
         </div>
       </motion.nav>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -128,11 +135,11 @@ export default function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-background/98 backdrop-blur-3xl flex items-center justify-center md:hidden"
+            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-lg flex items-center justify-center md:hidden"
             role="dialog"
             aria-modal="true"
           >
-            <nav className="flex flex-col items-center gap-10" role="list">
+            <nav className="flex flex-col items-center gap-12" role="list">
               {navItems.map((item, i) => (
                 <motion.a
                   key={item.href}
@@ -143,10 +150,10 @@ export default function Navigation() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ delay: i * 0.08 }}
-                  className={`text-4xl font-light tracking-tight ${
+                  className={`text-4xl font-light tracking-tight transition-colors ${
                     activeSection === item.href.slice(1)
                       ? "text-white"
-                      : "text-text-muted hover:text-white transition-colors"
+                      : "text-slate-500 hover:text-slate-300"
                   }`}
                 >
                   {item.label}
