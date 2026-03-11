@@ -276,6 +276,90 @@ body {
 }
 
 /* ════════════════════════════════════════════════════════════════ */
+/* PREMIUM TYPOGRAPHY SYSTEM                                        */
+/* ════════════════════════════════════════════════════════════════ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(3rem, 10vw, 9rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(2rem, 8vw, 7rem);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+p {
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ════════════════════════════════════════════════════════════════ */
+/* PREMIUM SHADOW SYSTEM                                            */
+/* ════════════════════════════════════════════════════════════════ */
+
+.shadow-soft {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12),
+              0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-medium {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+              0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.shadow-deep {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+              0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.3),
+              0 8px 32px rgba(124, 58, 237, 0.2);
+}
+
+.shadow-glow-intense {
+  box-shadow: 0 0 40px rgba(124, 58, 237, 0.6),
+              0 12px 40px rgba(124, 58, 237, 0.3);
+}
+
+/* ════════════════════════════════════════════════════════════════ */
+/* PREMIUM GLASS VARIANTS                                           */
+/* ════════════════════════════════════════════════════════════════ */
+
+.glass-frosted {
+  background: rgba(17, 17, 19, 0.8);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-transparent {
+  background: rgba(17, 17, 19, 0.5);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-tinted {
+  background: rgba(124, 58, 237, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+/* ════════════════════════════════════════════════════════════════ */
 /* SR-ONLY ACCESSIBILITY                                            */
 /* ════════════════════════════════════════════════════════════════ */
 
