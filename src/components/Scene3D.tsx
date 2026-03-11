@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef, useMemo, useEffect, useState } from "react";
+import { useRef, useMemo, useLayoutEffect, useState } from "react";
 import * as THREE from "three";
 
 function ParticleField() {
@@ -11,8 +11,11 @@ function ParticleField() {
   const particles = useMemo(() => {
     const positions = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
+      // eslint-disable-next-line react-hooks/purity
       positions[i * 3] = (Math.random() - 0.5) * 40;
+      // eslint-disable-next-line react-hooks/purity
       positions[i * 3 + 1] = (Math.random() - 0.5) * 40;
+      // eslint-disable-next-line react-hooks/purity
       positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
     }
     return positions;
@@ -42,11 +45,13 @@ function ParticleField() {
 }
 
 export default function Scene3D() {
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mq.matches);
     const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
