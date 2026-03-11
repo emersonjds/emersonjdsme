@@ -56,49 +56,78 @@ function ProjectCard({
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="group"
     >
-      <a href={project.link} className="block card p-8 sm:p-10 h-full" aria-label={`View project: ${project.title}`}>
-        <div className="flex items-center gap-4 mb-6">
-          <div
-            className="h-[2px] w-8 rounded-full group-hover:w-14 transition-all duration-400"
+      <motion.a
+        href={project.link}
+        whileHover={{ y: -8 }}
+        className="block card p-8 sm:p-10 h-full group/card"
+        aria-label={`View project: ${project.title}`}
+      >
+        {/* Accent Background Gradient */}
+        <div
+          className="absolute inset-0 rounded-[16px] opacity-0 group-hover:opacity-5 transition-opacity duration-500"
+          style={{ background: project.accent }}
+          aria-hidden="true"
+        />
+
+        {/* Accent Line */}
+        <div className="relative flex items-center gap-4 mb-6">
+          <motion.div
+            className="h-[2px] rounded-full"
+            initial={{ width: 32 }}
+            whileHover={{ width: 56 }}
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
             style={{ background: project.accent }}
             aria-hidden="true"
           />
-          <span className="text-xs font-mono text-text-muted tracking-widest">
+          <span className="text-xs font-mono text-text-muted tracking-widest flex-shrink-0">
             {String(index + 1).padStart(2, "0")}
           </span>
         </div>
 
-        <div className="flex items-start justify-between mb-4">
-          <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight group-hover:text-accent-light transition-colors">
+        {/* Title and Icon */}
+        <div className="relative flex items-start justify-between mb-4">
+          <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight group-hover:text-accent-light transition-colors duration-300">
             {project.title}
           </h3>
-          <svg
+          <motion.svg
             width="20"
             height="20"
             viewBox="0 0 20 20"
             fill="none"
-            className="text-text-muted group-hover:text-accent-light group-hover:rotate-45 transition-all duration-300 mt-1.5 ml-4 flex-shrink-0"
+            className="text-text-muted group-hover:text-accent-light transition-colors duration-300 mt-1.5 ml-4 flex-shrink-0"
+            whileHover={{ rotate: 45, scale: 1.1 }}
             aria-hidden="true"
           >
-            <path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+            <path
+              d="M5 15L15 5M15 5H8M15 5v7"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </motion.svg>
         </div>
 
-        <p className="text-text-muted text-base leading-relaxed mb-8">
+        {/* Description */}
+        <p className="relative text-text-muted text-base leading-relaxed mb-8">
           {project.description}
         </p>
 
-        <ul className="flex flex-wrap gap-2.5" aria-label="Technologies used">
-          {project.tags.map((tag) => (
-            <li
+        {/* Tags */}
+        <ul className="relative flex flex-wrap gap-2.5" aria-label="Technologies used">
+          {project.tags.map((tag, i) => (
+            <motion.li
               key={tag}
-              className="px-3.5 py-1.5 rounded-lg text-xs font-mono text-text-muted bg-surface-light border border-border"
+              initial={{ opacity: 0, y: 5 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.3, delay: 0.2 + i * 0.05 }}
+              className="tag"
             >
               {tag}
-            </li>
+            </motion.li>
           ))}
         </ul>
-      </a>
+      </motion.a>
     </motion.article>
   );
 }
@@ -117,7 +146,10 @@ export default function Projects() {
           transition={{ duration: 0.7 }}
           className="mb-16 sm:mb-20"
         >
-          <span className="text-accent text-xs font-mono tracking-[0.25em] uppercase block mb-4" aria-hidden="true">
+          <span
+            className="text-accent text-xs font-mono tracking-[0.25em] uppercase block mb-4"
+            aria-hidden="true"
+          >
             Work
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">

@@ -61,12 +61,50 @@ body {
   border-radius: 6px;
 }
 
-/* ── Gradient Text ── */
+/* ── Keyframe Animations ── */
 @keyframes gradient-shift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
 
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(124, 58, 237, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.6); }
+}
+
+@keyframes blur-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes text-glow {
+  0%, 100% { text-shadow: 0 0 10px rgba(124, 58, 237, 0.3); }
+  50% { text-shadow: 0 0 20px rgba(124, 58, 237, 0.6); }
+}
+
+@keyframes gradient-border-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── Gradient Text ── */
 .gradient-text {
   background: linear-gradient(135deg, #7c3aed, #c084fc, #f472b6, #7c3aed);
   background-size: 300% 300%;
@@ -76,46 +114,151 @@ body {
   background-clip: text;
 }
 
-/* ── Card ── */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+/* ── Glow Effects ── */
+.glow-effect {
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
 }
+
+.glow-effect:hover {
+  animation: glow-pulse 1.5s ease-in-out infinite;
+}
+
+.glow-text {
+  animation: text-glow 2s ease-in-out infinite;
+}
+
+/* ── Float Effect ── */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ── Shimmer Effect ── */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 2.5s infinite;
+}
+
+/* ── Blur In ── */
+.blur-in {
+  animation: blur-in 0.6s ease-out;
+}
+
+/* ── Card Glassmorphism Enhancement ── */
+.card {
+  background: rgba(17, 17, 19, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(39, 39, 42, 0.5);
+  border-radius: 16px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(124, 58, 237, 0.1),
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
 .card:hover {
-  border-color: var(--border-hover);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px var(--border-hover);
-  transform: translateY(-3px);
+  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow:
+    0 20px 40px rgba(124, 58, 237, 0.15),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 40px rgba(124, 58, 237, 0.1);
+  transform: translateY(-4px);
+  background: rgba(17, 17, 19, 0.8);
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 /* ── Glass Nav ── */
 .glass-nav {
-  background: rgba(9, 9, 11, 0.9);
+  background: rgba(9, 9, 11, 0.8);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(39, 39, 42, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-/* ── Ambient ── */
+/* ── Ambient Background Enhancement ── */
 .ambient-bg {
-  position: fixed; inset: 0; z-index: -20; pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: -20;
+  pointer-events: none;
   background:
-    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(124,58,237,0.06), transparent 50%),
-    radial-gradient(ellipse 40% 30% at 80% 70%, rgba(168,85,247,0.03), transparent 50%);
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(124, 58, 237, 0.08), transparent 50%),
+    radial-gradient(ellipse 40% 30% at 80% 70%, rgba(168, 85, 247, 0.05), transparent 50%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(244, 114, 182, 0.03), transparent 60%);
 }
 
-/* ── Noise ── */
+/* ── Ambient Glow Overlay ── */
+.ambient-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -19;
+  pointer-events: none;
+  opacity: 0.6;
+  background:
+    radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, var(--background) 100%);
+}
+
+/* ── Noise Texture ── */
 .noise::before {
-  content: ""; position: fixed; inset: 0; z-index: 9999;
-  pointer-events: none; opacity: 0.015;
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.015;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat; background-size: 256px 256px;
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }
 
 /* ── Divider ── */
 .section-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent 5%, var(--border) 50%, transparent 95%);
+  position: relative;
+}
+
+.section-divider::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 5%, rgba(124, 58, 237, 0.1) 50%, transparent 95%);
+  filter: blur(4px);
+  pointer-events: none;
 }
 
 /* ── Container ── */
@@ -126,42 +269,167 @@ body {
   padding-left: 32px;
   padding-right: 32px;
 }
+
 @media (min-width: 768px) {
-  .wrap { padding-left: 48px; padding-right: 48px; }
+  .wrap {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
 }
+
 @media (min-width: 1280px) {
-  .wrap { padding-left: 64px; padding-right: 64px; }
+  .wrap {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
 }
 
 /* ── Buttons ── */
 .btn-primary {
-  display: inline-flex; align-items: center; justify-content: center;
-  padding: 16px 36px; border-radius: 12px;
-  background: var(--accent); color: white;
-  font-weight: 600; font-size: 15px; border: none; cursor: pointer;
-  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 36px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7c3aed, #9b5bef);
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  border: 1px solid rgba(124, 58, 237, 0.5);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
 .btn-primary:hover {
-  background: #8b5cf6;
-  box-shadow: 0 0 30px rgba(124,58,237,0.4), 0 4px 20px rgba(0,0,0,0.3);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+  box-shadow:
+    0 0 40px rgba(124, 58, 237, 0.5),
+    0 8px 24px rgba(124, 58, 237, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  border-color: rgba(124, 58, 237, 0.8);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary:active {
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
-  display: inline-flex; align-items: center; justify-content: center;
-  padding: 16px 36px; border-radius: 12px;
-  background: transparent; color: var(--text-secondary);
-  font-weight: 600; font-size: 15px;
-  border: 1px solid var(--border); cursor: pointer;
-  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 36px;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 15px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
+
+.btn-secondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(124, 58, 237, 0.05);
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
 .btn-secondary:hover {
-  border-color: var(--accent); color: white;
-  transform: translateY(-2px);
+  border-color: var(--accent);
+  color: white;
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.2);
+  transform: translateY(-3px);
+  background: rgba(124, 58, 237, 0.05);
+}
+
+.btn-secondary:hover::before {
+  opacity: 1;
+}
+
+/* ── Badge/Pill Style ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  color: var(--accent-light);
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.badge:hover {
+  background: rgba(124, 58, 237, 0.15);
+  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+}
+
+/* ── Tag Style ── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  background: rgba(124, 58, 237, 0.15);
+  border-color: rgba(124, 58, 237, 0.4);
+  color: var(--accent-light);
+  transform: translateY(-1px);
+}
+
+/* ── Accent Line Animation ── */
+.accent-line {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ── Utility ── */
 .sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Scrollbar Styling Enhancement ── */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.4);
 }

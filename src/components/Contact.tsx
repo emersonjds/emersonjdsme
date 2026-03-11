@@ -34,6 +34,29 @@ const socialLinks = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const linkVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
 export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
@@ -42,12 +65,16 @@ export default function Contact() {
     <section id="contact" aria-label="Contact information">
       <div className="section-divider" />
       <div className="wrap py-28 sm:py-40 text-center" ref={ref}>
+        {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
         >
-          <span className="text-accent text-xs font-mono tracking-[0.25em] uppercase block mb-4" aria-hidden="true">
+          <span
+            className="text-accent text-xs font-mono tracking-[0.25em] uppercase block mb-4"
+            aria-hidden="true"
+          >
             Contact
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white leading-tight">
@@ -61,26 +88,28 @@ export default function Contact() {
           </p>
         </motion.header>
 
+        {/* Social Links */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex items-center justify-center gap-5 mb-14"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="flex items-center justify-center gap-5 mb-14 flex-wrap"
           role="navigation"
           aria-label="Social media links"
         >
-          {socialLinks.map((link, i) => (
+          {socialLinks.map((link) => (
             <motion.a
               key={link.label}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.4 + i * 0.08 }}
-              whileHover={{ y: -4 }}
-              whileTap={{ scale: 0.95 }}
-              className="card p-5 sm:p-6 text-text-muted hover:text-accent-light hover:border-accent/30"
+              variants={linkVariants}
+              whileHover={{
+                y: -6,
+                borderColor: "rgba(124, 58, 237, 0.6)",
+              }}
+              whileTap={{ scale: 0.92 }}
+              className="card p-5 sm:p-6 text-text-muted hover:text-accent-light transition-colors duration-300"
               aria-label={`Visit my ${link.label} profile`}
             >
               {link.icon}
@@ -88,20 +117,36 @@ export default function Contact() {
           ))}
         </motion.div>
 
+        {/* CTA Button */}
         <motion.a
           href="mailto:emerson@example.com"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.6 }}
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.97 }}
-          className="btn-primary text-base"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="btn-primary text-base inline-flex group"
           aria-label="Send me an email"
         >
           Say Hello
-          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" className="ml-2.5" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <motion.svg
+            width="18"
+            height="18"
+            viewBox="0 0 16 16"
+            fill="none"
+            className="ml-2.5"
+            aria-hidden="true"
+            animate={{ x: [0, 2, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <path
+              d="M3 8h10M9 4l4 4-4 4"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </motion.svg>
         </motion.a>
       </div>
     </section>

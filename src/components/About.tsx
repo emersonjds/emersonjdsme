@@ -24,7 +24,10 @@ export default function About() {
           transition={{ duration: 0.7 }}
           className="mb-16 sm:mb-20"
         >
-          <span className="text-accent text-xs font-mono tracking-[0.25em] uppercase block mb-4" aria-hidden="true">
+          <span
+            className="text-accent text-xs font-mono tracking-[0.25em] uppercase block mb-4"
+            aria-hidden="true"
+          >
             About
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
@@ -33,8 +36,9 @@ export default function About() {
           </h2>
         </motion.header>
 
-        {/* Text */}
+        {/* Content Grid */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 mb-16 sm:mb-20">
+          {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -55,18 +59,33 @@ export default function About() {
               <motion.a
                 href="#contact"
                 whileHover={{ x: 6 }}
+                whileTap={{ x: 3 }}
                 className="text-accent-light hover:text-white transition-colors inline-flex items-center gap-3 text-base font-medium group"
                 aria-label="Navigate to contact section"
               >
                 Let&apos;s work together
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                <motion.svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  aria-hidden="true"
+                  animate={{ x: [0, 2, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <path
+                    d="M3 8h10M9 4l4 4-4 4"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </motion.svg>
               </motion.a>
             </div>
           </motion.div>
 
-          {/* Stats */}
+          {/* Stats Cards */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -79,14 +98,28 @@ export default function About() {
               <motion.div
                 key={stat.label}
                 role="listitem"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
-                className="card p-8 sm:p-10 text-center"
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.5 + i * 0.1,
+                  ease: [0.4, 0, 0.2, 1],
+                }}
+                whileHover={{
+                  y: -6,
+                  boxShadow: "0 20px 40px rgba(124, 58, 237, 0.2)",
+                }}
+                className="card p-8 sm:p-10 text-center cursor-default"
               >
-                <div className="text-4xl sm:text-5xl font-bold gradient-text mb-3" aria-hidden="true">
+                <motion.div
+                  className="text-4xl sm:text-5xl font-bold gradient-text mb-3"
+                  aria-hidden="true"
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 0.6 + i * 0.1 }}
+                >
                   {stat.value}
-                </div>
+                </motion.div>
                 <div className="text-text-muted text-sm sm:text-base">
                   <span className="sr-only">{stat.value} </span>
                   {stat.label}

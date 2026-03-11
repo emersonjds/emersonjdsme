@@ -49,31 +49,48 @@ function SkillCard({
       className="card p-8 sm:p-10 group"
       aria-label={`${category.title} skills`}
     >
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg sm:text-xl font-semibold text-white">{category.title}</h3>
-        <span
-          className="text-xs font-mono tracking-widest"
-          style={{ color: category.accent }}
-          aria-hidden="true"
-        >
-          {category.num}
-        </span>
-      </div>
-
+      {/* Card Glow Background */}
       <div
-        className="h-[1px] mb-6 w-10 group-hover:w-full transition-all duration-500"
+        className="absolute inset-0 rounded-[16px] opacity-0 group-hover:opacity-10 transition-opacity duration-500"
         style={{ background: category.accent }}
         aria-hidden="true"
       />
 
-      <ul className="flex flex-wrap gap-2.5" aria-label={`${category.title} technologies`}>
+      {/* Header */}
+      <div className="relative flex items-center justify-between mb-6">
+        <h3 className="text-lg sm:text-xl font-semibold text-white group-hover:text-accent-light transition-colors duration-300">
+          {category.title}
+        </h3>
+        <motion.span
+          className="text-xs font-mono tracking-widest font-bold"
+          style={{ color: category.accent }}
+          whileHover={{ scale: 1.1 }}
+          aria-hidden="true"
+        >
+          {category.num}
+        </motion.span>
+      </div>
+
+      {/* Accent Line */}
+      <motion.div
+        className="h-[1px] mb-6 rounded-full"
+        initial={{ width: 40 }}
+        whileHover={{ width: "100%" }}
+        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+        style={{ background: category.accent }}
+        aria-hidden="true"
+      />
+
+      {/* Skills List */}
+      <ul className="relative flex flex-wrap gap-2.5" aria-label={`${category.title} technologies`}>
         {category.skills.map((skill, i) => (
           <motion.li
             key={skill}
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
+            initial={{ opacity: 0, y: 5 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.3, delay: 0.2 + i * 0.05 }}
-            className="px-4 py-2 rounded-lg text-sm text-text-muted bg-surface-light border border-border hover:border-border-hover hover:text-text-secondary transition-colors cursor-default"
+            className="tag"
+            whileHover={{ scale: 1.05, y: -2 }}
           >
             {skill}
           </motion.li>
@@ -97,7 +114,10 @@ export default function Skills() {
           transition={{ duration: 0.7 }}
           className="mb-16 sm:mb-20"
         >
-          <span className="text-accent text-xs font-mono tracking-[0.25em] uppercase block mb-4" aria-hidden="true">
+          <span
+            className="text-accent text-xs font-mono tracking-[0.25em] uppercase block mb-4"
+            aria-hidden="true"
+          >
             Skills
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
