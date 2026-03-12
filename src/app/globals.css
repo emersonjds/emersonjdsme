@@ -8,31 +8,31 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 15%;
-    --card: 0 0% 96%;
-    --card-foreground: 0 0% 15%;
-    --muted: 0 0% 85%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 259 84% 52%;
+    --background: 10 10% 12%;
+    --foreground: 0 0% 95%;
+    --card: 10 10% 18%;
+    --card-foreground: 0 0% 95%;
+    --muted: 10 10% 35%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 259 84% 60%;
     --accent-foreground: 0 0% 100%;
-    --border: 0 0% 85%;
-    --primary: 259 84% 52%;
+    --border: 10 10% 25%;
+    --primary: 259 84% 60%;
     --primary-foreground: 0 0% 100%;
   }
 
   .dark {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 92%;
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 92%;
-    --muted: 0 0% 25%;
-    --muted-foreground: 0 0% 60%;
+    --background: 10 10% 12%;
+    --foreground: 0 0% 95%;
+    --card: 10 10% 18%;
+    --card-foreground: 0 0% 95%;
+    --muted: 10 10% 35%;
+    --muted-foreground: 0 0% 70%;
     --accent: 259 84% 60%;
-    --accent-foreground: 0 0% 10%;
-    --border: 0 0% 25%;
+    --accent-foreground: 0 0% 100%;
+    --border: 10 10% 25%;
     --primary: 259 84% 60%;
-    --primary-foreground: 0 0% 10%;
+    --primary-foreground: 0 0% 100%;
   }
 
   body {
@@ -44,4 +44,22 @@
   html {
     scroll-behavior: smooth;
   }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
 }
