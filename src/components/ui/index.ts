@@ -8,5 +8,4 @@ export {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-export { Label } from "@/components/ui/label"
 export { Separator } from "@/components/ui/separator"
