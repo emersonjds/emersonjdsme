@@ -1,11 +1,10 @@
-"use client"
-
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-
 export default function Home() {
-  const [activeSection, setActiveSection] = useState("home")
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  return (
+    <div className="w-screen h-screen bg-black flex items-center justify-center">
+      <p className="text-white text-2xl">Bem vindo</p>
+    </div>
+  )
+}
 
   useEffect(() => {
     const handleScroll = () => {
