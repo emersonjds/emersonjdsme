@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(screencapture:*)"
+      "Bash(screencapture:*)",
+      "Bash(git remote:*)",
+      "Bash(source ~/.zshrc && nvm use 24 && npm install lucide-react clsx tailwind-merge framer-motion 2>&1 | tail -5)",
+      "Bash(source ~/.zshrc && nvm use 24 && npx shadcn@latest add button badge card separator -y 2>&1 | tail -10)",
+      "Bash(source ~/.zshrc && nvm use 24 && npx next build 2>&1 | tail -30)",
+      "Bash(source ~/.zshrc && nvm use 24 && npm install class-variance-authority 2>&1 | tail -5)",
+      "Bash(source ~/.zshrc && nvm use 24 && npx next build 2>&1 | tail -20)"
     ]
   }
 }
