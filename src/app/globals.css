@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
-/* ─── Design tokens ─────────────────────────────────────────────────── */
 :root {
-  /* Colors */
   --color-bg:          #0a0b0d;
   --color-bg-elevated: #111316;
   --color-bg-overlay:  #16191d;
@@ -15,7 +13,6 @@
   --color-glow:        rgba(200, 255, 62, 0.18);
   --color-halo:        rgba(200, 255, 62, 0.06);
 
-  /* Typography */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
@@ -28,7 +25,6 @@
   --fs-small:   0.875rem;
   --fs-mono:    0.75rem;
 
-  /* Spacing */
   --s-1:  4px;
   --s-2:  8px;
   --s-3:  12px;
@@ -40,13 +36,11 @@
   --s-24: 96px;
   --s-32: 128px;
 
-  /* Radius */
   --r-hairline: 2px;
   --r-sm:       4px;
   --r-md:       8px;
   --r-pill:     999px;
 
-  /* Motion */
   --dur-instant: 80ms;
   --dur-fast:    160ms;
   --dur-base:    240ms;
@@ -66,7 +60,6 @@
   --slide-xl: 64px;
 }
 
-/* ─── Reset ─────────────────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -78,7 +71,6 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-/* ─── Base ───────────────────────────────────────────────────────────── */
 body {
   background-color: var(--color-bg);
   color: var(--color-fg);
@@ -91,7 +83,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Grain texture */
 body::before {
   content: "";
   position: fixed;
@@ -104,7 +95,6 @@ body::before {
   background-size: 200px 200px;
 }
 
-/* Ambient top halo */
 body::after {
   content: "";
   position: fixed;
@@ -114,7 +104,6 @@ body::after {
   background: radial-gradient(ellipse 80% 50% at 50% -10%, var(--color-halo), transparent 60%);
 }
 
-/* ─── Typography ─────────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.1;
@@ -138,13 +127,11 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-fg-muted);
 }
 
-/* ─── Focus ──────────────────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
 
-/* ─── Skip link ──────────────────────────────────────────────────────── */
 .skip-link {
   position: absolute;
   top: -100%;
@@ -165,7 +152,6 @@ h1, h2, h3, h4, h5, h6 {
   top: var(--s-4);
 }
 
-/* ─── Text link underline animation ─────────────────────────────────── */
 .link-underline {
   position: relative;
   text-decoration: none;
@@ -190,7 +176,6 @@ h1, h2, h3, h4, h5, h6 {
   transform-origin: left;
 }
 
-/* ─── CTA press ──────────────────────────────────────────────────────── */
 .btn:active {
   transform: scale(0.97);
   filter: brightness(0.95);
@@ -200,7 +185,6 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform var(--dur-fast) var(--ease-out), filter var(--dur-fast) var(--ease-out), background-color var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
 }
 
-/* ─── Badge pulse ────────────────────────────────────────────────────── */
 @keyframes badge-pulse {
   0%   { box-shadow: 0 0 0 0 var(--color-glow); }
   70%  { box-shadow: 0 0 0 6px transparent; }
@@ -217,7 +201,6 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
 }
 
-/* ─── Page-enter animation ───────────────────────────────────────────── */
 @keyframes page-enter {
   from {
     opacity: 0;
@@ -241,7 +224,6 @@ h1, h2, h3, h4, h5, h6 {
 .page-enter-4 { animation-delay: 240ms; }
 .page-enter-5 { animation-delay: 320ms; }
 
-/* ─── Reveal on scroll ───────────────────────────────────────────────── */
 [data-reveal] {
   opacity: 0;
   transform: translateY(var(--slide-md));
@@ -253,27 +235,12 @@ h1, h2, h3, h4, h5, h6 {
   transform: none;
 }
 
-[data-reveal][data-reveal-delay="60"] {
-  transition-delay: 60ms;
-}
+[data-reveal][data-reveal-delay="60"]  { transition-delay: 60ms; }
+[data-reveal][data-reveal-delay="120"] { transition-delay: 120ms; }
+[data-reveal][data-reveal-delay="180"] { transition-delay: 180ms; }
+[data-reveal][data-reveal-delay="240"] { transition-delay: 240ms; }
+[data-reveal][data-reveal-delay="300"] { transition-delay: 300ms; }
 
-[data-reveal][data-reveal-delay="120"] {
-  transition-delay: 120ms;
-}
-
-[data-reveal][data-reveal-delay="180"] {
-  transition-delay: 180ms;
-}
-
-[data-reveal][data-reveal-delay="240"] {
-  transition-delay: 240ms;
-}
-
-[data-reveal][data-reveal-delay="300"] {
-  transition-delay: 300ms;
-}
-
-/* ─── Card hover ─────────────────────────────────────────────────────── */
 .card {
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border);
@@ -307,7 +274,6 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform var(--dur-base) var(--ease-out) 60ms;
 }
 
-/* ─── Copy feedback ──────────────────────────────────────────────────── */
 @keyframes scale-in {
   from { transform: scale(0.6); opacity: 0; }
   to   { transform: scale(1);   opacity: 1; }
@@ -321,7 +287,6 @@ h1, h2, h3, h4, h5, h6 {
   animation: scale-in var(--dur-base) var(--ease-overshoot) both;
 }
 
-/* ─── Marquee ────────────────────────────────────────────────────────── */
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -337,7 +302,6 @@ h1, h2, h3, h4, h5, h6 {
   animation-play-state: paused;
 }
 
-/* ─── Timeline trace ─────────────────────────────────────────────────── */
 @keyframes timeline-trace {
   from { transform: scaleY(0); }
   to   { transform: scaleY(1); }
@@ -364,7 +328,6 @@ h1, h2, h3, h4, h5, h6 {
   transform-origin: center;
 }
 
-/* ─── Eyebrow shimmer ────────────────────────────────────────────────── */
 @keyframes shimmer-move {
   0%   { background-position: -200% center; }
   100% { background-position: 200% center; }
@@ -387,7 +350,6 @@ h1, h2, h3, h4, h5, h6 {
   animation: shimmer-move 4.8s linear infinite;
 }
 
-/* ─── Section layout ─────────────────────────────────────────────────── */
 .section-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -400,8 +362,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Vertical rhythm. One block of padding per section keeps the gap between
-   adjacent sections equal to a single rhythm unit instead of two. */
 .section {
   padding-block: clamp(40px, 4.5vw, 64px);
 }
@@ -419,7 +379,6 @@ h1, h2, h3, h4, h5, h6 {
   padding-block: clamp(40px, 4.5vw, 64px) clamp(56px, 6vw, 88px);
 }
 
-/* ─── prefers-reduced-motion ─────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -456,7 +415,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ─── prefers-contrast: more ─────────────────────────────────────────── */
 @media (prefers-contrast: more) {
   :root {
     --color-fg-muted:   #b9bdc4;
@@ -466,7 +424,6 @@ h1, h2, h3, h4, h5, h6 {
   .card { border-color: var(--color-border); }
 }
 
-/* ─── forced-colors (Windows High Contrast) ──────────────────────────── */
 @media (forced-colors: active) {
   .card,
   .country-chip {
@@ -477,7 +434,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ─── Tap target hardening on coarse pointers ────────────────────────── */
 @media (pointer: coarse) {
   a,
   button {
@@ -488,7 +444,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ─── Selection ──────────────────────────────────────────────────────── */
 ::selection {
   background: var(--color-accent);
   color: #0a0b0d;
