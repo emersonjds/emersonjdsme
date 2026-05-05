@@ -57,11 +57,13 @@ export default function Contact() {
               displayAs="link"
               className="display"
               style={{
-                fontSize: "var(--fs-display)",
+                fontSize: "clamp(1.75rem, 4.5vw, 4rem)",
                 fontWeight: 700,
                 lineHeight: 0.95,
                 letterSpacing: "-0.04em",
                 color: "var(--color-fg)",
+                wordBreak: "break-all",
+                overflowWrap: "anywhere",
               }}
             />
           </div>
