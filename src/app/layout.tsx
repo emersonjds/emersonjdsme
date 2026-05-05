@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import RevealObserver from "@/components/reveal-observer";
+import ScrollProgress from "@/components/scroll-progress";
 import { LocaleProvider } from "@/lib/i18n";
 
 const geistSans = Geist({
@@ -99,6 +100,7 @@ export default function RootLayout({
           <a href="#main" className="skip-link">
             Skip to content
           </a>
+          <ScrollProgress />
           <RevealObserver />
           {children}
         </LocaleProvider>
