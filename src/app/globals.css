@@ -455,3 +455,41 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-fg-muted);
   }
 }
+
+/* ─── prefers-contrast: more ─────────────────────────────────────────── */
+@media (prefers-contrast: more) {
+  :root {
+    --color-fg-muted:   #b9bdc4;
+    --color-fg-subtle:  #7a7f88;
+    --color-border:     #34383f;
+  }
+  .card { border-color: var(--color-border); }
+}
+
+/* ─── forced-colors (Windows High Contrast) ──────────────────────────── */
+@media (forced-colors: active) {
+  .card,
+  .country-chip {
+    border-color: CanvasText;
+  }
+  :focus-visible {
+    outline-color: Highlight;
+  }
+}
+
+/* ─── Tap target hardening on coarse pointers ────────────────────────── */
+@media (pointer: coarse) {
+  a,
+  button {
+    min-height: 32px;
+  }
+  .nav-link {
+    padding-block: 6px;
+  }
+}
+
+/* ─── Selection ──────────────────────────────────────────────────────── */
+::selection {
+  background: var(--color-accent);
+  color: #0a0b0d;
+}

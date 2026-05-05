@@ -34,6 +34,7 @@ export default function LocaleSwitcher() {
             </span>
           )}
           <button
+            type="button"
             onClick={() => setLocale(loc)}
             aria-label={`Switch language to ${loc.toUpperCase()}`}
             aria-pressed={locale === loc}

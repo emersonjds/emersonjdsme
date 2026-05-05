@@ -49,8 +49,10 @@ export default function CopyEmail({
 
   return (
     <button
+      type="button"
       onClick={handleCopy}
       aria-label={copied ? "E-mail copiado" : "Copiar e-mail"}
+      aria-live="polite"
       title={copied ? "E-mail copiado" : "Clique para copiar"}
       className={cn(
         "btn inline-flex items-center gap-2 rounded-[var(--r-md)] border border-[var(--color-border)]",
