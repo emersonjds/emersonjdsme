@@ -6,6 +6,9 @@ export interface Dict {
     about: string;
     contact: string;
     writingSoon: string;
+    ariaPrimary: string;
+    menuOpen: string;
+    menuClose: string;
   };
   hero: {
     badge: string;
@@ -83,6 +86,9 @@ export const en: Dict = {
     about: "about",
     contact: "contact",
     writingSoon: "soon",
+    ariaPrimary: "Primary",
+    menuOpen: "Open menu",
+    menuClose: "Close menu",
   },
   hero: {
     badge: "open to conversations · 2026",

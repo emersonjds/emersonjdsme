@@ -8,6 +8,9 @@ export const pt: Dict = {
     about: "sobre",
     contact: "contato",
     writingSoon: "em breve",
+    ariaPrimary: "Principal",
+    menuOpen: "Abrir menu",
+    menuClose: "Fechar menu",
   },
   hero: {
     badge: "disponível para conversas · 2026",
