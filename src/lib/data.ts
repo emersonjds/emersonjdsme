@@ -49,7 +49,6 @@ export interface Country {
   code: string;
 }
 
-/* ─── Projects ────────────────────────────────────────────────────────── */
 
 export const projects: readonly Project[] = [
   {
@@ -232,7 +231,6 @@ export const projects: readonly Project[] = [
   },
 ] as const;
 
-/* ─── Stack ───────────────────────────────────────────────────────────── */
 
 export const stackCategories: readonly StackCategory[] = [
   {
@@ -294,7 +292,6 @@ export const marqueeItems: readonly string[] = [
   "scrum",
 ] as const;
 
-/* ─── Experience ──────────────────────────────────────────────────────── */
 
 export const experience: readonly Experience[] = [
   {
@@ -430,7 +427,6 @@ export const experience: readonly Experience[] = [
   },
 ] as const;
 
-/* ─── Awards ──────────────────────────────────────────────────────────── */
 
 export const awards: readonly Award[] = [
   { date: "2023-12", position: "1st", name: "MBM InovaHack", organizer: "SAP" },
@@ -458,7 +454,6 @@ export const awards: readonly Award[] = [
   { date: "2016-12", position: "finalist", name: "The Code Force", organizer: "Santander / Mastercard" },
 ] as const;
 
-/* ─── Education ───────────────────────────────────────────────────────── */
 
 export const education: readonly EducationItem[] = [
   {
@@ -505,7 +500,6 @@ export const education: readonly EducationItem[] = [
   },
 ] as const;
 
-/* ─── Countries ───────────────────────────────────────────────────────── */
 
 export const countries: readonly Country[] = [
   { name: "Brasil", code: "BR" },
