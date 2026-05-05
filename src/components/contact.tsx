@@ -31,18 +31,8 @@ export default function Contact() {
       className="section section--last"
     >
       <div className="section-container">
-        <h2
-          id="contact-heading"
-          className="eyebrow"
-          data-reveal
-          style={{ marginBottom: "var(--s-12)" }}
-        >
-          {t("contact.eyebrow")}
-        </h2>
-
         <div
           data-reveal
-          data-reveal-delay="60"
           style={{
             padding: "var(--s-12)",
             backgroundColor: "var(--color-bg-elevated)",
@@ -53,6 +43,14 @@ export default function Contact() {
             gap: "var(--s-8)",
           }}
         >
+          <h2
+            id="contact-heading"
+            className="eyebrow"
+            style={{ marginBottom: "calc(var(--s-4) * -1)" }}
+          >
+            {t("contact.eyebrow")}
+          </h2>
+
           <div>
             <CopyEmail
               email="ti.emerson.silva@gmail.com"
