@@ -131,7 +131,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile drawer */}
       <div
         className={`drawer-backdrop ${open ? "drawer-backdrop--open" : ""}`}
         onClick={close}

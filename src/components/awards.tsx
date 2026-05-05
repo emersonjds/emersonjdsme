@@ -29,7 +29,6 @@ function groupByYear(list: readonly Award[]): Map<string, readonly Award[]> {
     if (!map.has(year)) map.set(year, []);
     map.get(year)!.push(award);
   }
-  // Sort descending
   return new Map([...map.entries()].sort((a, b) => Number(b[0]) - Number(a[0])));
 }
 
@@ -116,7 +115,6 @@ export default function Awards() {
                             : "1px solid transparent",
                         }}
                       >
-                        {/* Position badge */}
                         <span
                           style={{
                             fontFamily: "var(--font-mono)",
@@ -135,7 +133,6 @@ export default function Awards() {
                           {positionLabel(award.position, labels)}
                         </span>
 
-                        {/* Name */}
                         <span
                           style={{
                             fontSize: "var(--fs-small)",
@@ -147,7 +144,6 @@ export default function Awards() {
                           {award.name}
                         </span>
 
-                        {/* Organizer */}
                         <span
                           style={{
                             fontFamily: "var(--font-mono)",
@@ -160,7 +156,6 @@ export default function Awards() {
                           {award.organizer}
                         </span>
 
-                        {/* Date */}
                         <span
                           style={{
                             fontFamily: "var(--font-mono)",

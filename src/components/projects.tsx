@@ -42,7 +42,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         minHeight: "320px",
       }}
     >
-      {/* Thumb */}
       <div
         className="card-thumb"
         style={{
@@ -99,7 +98,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </span>
       </div>
 
-      {/* Content */}
       <div
         style={{
           padding: "var(--s-6)",

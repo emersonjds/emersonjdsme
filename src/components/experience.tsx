@@ -23,7 +23,6 @@ export default function Experience() {
         </h2>
 
         <div style={{ position: "relative", paddingLeft: "var(--s-8)" }}>
-          {/* Timeline vertical line */}
           <div
             data-reveal
             className="timeline-line"
@@ -53,7 +52,6 @@ export default function Experience() {
                     paddingBottom: i < experience.length - 1 ? "var(--s-10)" : 0,
                   }}
                 >
-                  {/* Dot */}
                   <div
                     className="timeline-dot"
                     data-reveal

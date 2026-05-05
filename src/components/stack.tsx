@@ -111,7 +111,6 @@ export default function Stack() {
         </div>
       </div>
 
-      {/* Marquee */}
       <div
         data-reveal
         data-reveal-delay="180"

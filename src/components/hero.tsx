@@ -21,7 +21,6 @@ export default function Hero() {
             gap: "var(--s-8)",
           }}
         >
-          {/* Status badge */}
           <div className="page-enter page-enter-1">
             <span
               style={{
@@ -44,14 +43,12 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* Eyebrow */}
           <div className="page-enter page-enter-2">
             <p className="eyebrow eyebrow-shimmer">
               {t("hero.eyebrow")}
             </p>
           </div>
 
-          {/* H1 */}
           <div className="page-enter page-enter-3">
             <h1
               id="hero-heading"
@@ -62,7 +59,6 @@ export default function Hero() {
             </h1>
           </div>
 
-          {/* Subtitle */}
           <div className="page-enter page-enter-4" style={{ maxWidth: "620px" }}>
             <p
               style={{
@@ -75,7 +71,6 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* CTAs */}
           <div
             className="page-enter page-enter-5"
             style={{ display: "flex", alignItems: "center", gap: "var(--s-4)", flexWrap: "wrap" }}
@@ -105,7 +100,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Slogan bottom-right */}
         <p
           style={{
             position: "absolute",
