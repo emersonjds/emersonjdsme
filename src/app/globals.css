@@ -400,6 +400,25 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Vertical rhythm. One block of padding per section keeps the gap between
+   adjacent sections equal to a single rhythm unit instead of two. */
+.section {
+  padding-block: clamp(56px, 7vw, 96px);
+}
+
+.section--first {
+  padding-block: clamp(72px, 8vw, 112px) clamp(40px, 5vw, 72px);
+  min-height: calc(100dvh - 56px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.section--last {
+  padding-block: clamp(56px, 7vw, 96px) clamp(72px, 9vw, 120px);
+}
+
 /* ─── prefers-reduced-motion ─────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

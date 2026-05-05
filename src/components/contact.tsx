@@ -28,7 +28,7 @@ export default function Contact() {
     <section
       id="contato"
       aria-labelledby="contact-heading"
-      style={{ padding: "var(--s-24) 0" }}
+      className="section section--last"
     >
       <div className="section-container">
         <h2

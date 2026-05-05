@@ -10,7 +10,7 @@ export default function Education() {
     <section
       id="formacao"
       aria-labelledby="education-heading"
-      style={{ padding: "var(--s-24) 0" }}
+      className="section"
     >
       <div className="section-container">
         <h2

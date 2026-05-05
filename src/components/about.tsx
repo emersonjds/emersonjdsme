@@ -16,7 +16,7 @@ export default function About() {
     <section
       id="sobre"
       aria-labelledby="about-heading"
-      style={{ padding: "var(--s-24) 0" }}
+      className="section"
     >
       <div className="section-container">
         <div

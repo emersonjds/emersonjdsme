@@ -38,7 +38,7 @@ export default function Stack() {
     <section
       id="stack"
       aria-labelledby="stack-heading"
-      style={{ padding: "var(--s-24) 0" }}
+      className="section"
     >
       <div className="section-container">
         <h2

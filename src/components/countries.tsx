@@ -11,7 +11,7 @@ export default function Countries() {
     <section
       id="lugares"
       aria-labelledby="countries-heading"
-      style={{ padding: "var(--s-24) 0" }}
+      className="section"
     >
       <div className="section-container">
         <div data-reveal style={{ marginBottom: "var(--s-12)" }}>

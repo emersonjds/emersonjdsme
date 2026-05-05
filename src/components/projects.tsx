@@ -197,7 +197,7 @@ export default function Projects() {
     <section
       id="projetos"
       aria-labelledby="projects-heading"
-      style={{ padding: "var(--s-24) 0" }}
+      className="section"
     >
       <div className="section-container">
         <h2

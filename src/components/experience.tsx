@@ -10,7 +10,7 @@ export default function Experience() {
     <section
       id="experiencia"
       aria-labelledby="experience-heading"
-      style={{ padding: "var(--s-24) 0" }}
+      className="section"
     >
       <div className="section-container">
         <h2

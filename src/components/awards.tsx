@@ -52,7 +52,7 @@ export default function Awards() {
     <section
       id="premios"
       aria-labelledby="awards-heading"
-      style={{ padding: "var(--s-24) 0" }}
+      className="section"
     >
       <div className="section-container">
         <div data-reveal style={{ marginBottom: "var(--s-12)" }}>

@@ -10,14 +10,7 @@ export default function Hero() {
     <section
       id="top"
       aria-labelledby="hero-heading"
-      style={{
-        position: "relative",
-        minHeight: "calc(100dvh - 56px)",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        padding: "var(--s-24) 0 var(--s-16)",
-      }}
+      className="section section--first"
     >
       <div className="section-container" style={{ position: "relative" }}>
         <div
