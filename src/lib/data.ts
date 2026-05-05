@@ -507,7 +507,10 @@ export const education: readonly EducationItem[] = [
 
 /* ─── Countries ───────────────────────────────────────────────────────── */
 
-// TODO: completar lista de países visitados
 export const countries: readonly Country[] = [
   { name: "Brasil", code: "BR" },
+  { name: "Suíça", code: "CH" },
+  { name: "Colômbia", code: "CO" },
+  { name: "Londres", code: "GB" },
+  { name: "Alemanha", code: "DE" },
 ] as const;

@@ -3,6 +3,12 @@
 import { countries } from "@/lib/data";
 import { useLocale } from "@/lib/i18n";
 
+function flagFromCode(code: string): string {
+  return [...code.toUpperCase()]
+    .map((char) => String.fromCodePoint(127397 + char.charCodeAt(0)))
+    .join("");
+}
+
 export default function Countries() {
   const { t } = useLocale();
   const showWip = countries.length < 3;
@@ -56,6 +62,17 @@ export default function Countries() {
                   "transform var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out)",
               }}
             >
+              <span
+                aria-hidden="true"
+                className="country-flag"
+                style={{
+                  fontSize: "18px",
+                  lineHeight: 1,
+                  filter: "saturate(1.1)",
+                }}
+              >
+                {flagFromCode(country.code)}
+              </span>
               <span
                 style={{
                   fontSize: "var(--fs-small)",
