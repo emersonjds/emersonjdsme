@@ -2,10 +2,10 @@
 
 import {
   createContext,
-  useContext,
-  useState,
-  useEffect,
   useCallback,
+  useContext,
+  useEffect,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 import { en, type Dict } from "./locales/en";
@@ -15,6 +15,7 @@ import { es } from "./locales/es";
 export type Locale = "en" | "pt" | "es";
 
 const STORAGE_KEY = "ejds:locale";
+const LOCALES: readonly Locale[] = ["en", "pt", "es"];
 
 const dicts: Record<Locale, Dict> = { en, pt, es };
 
@@ -39,6 +40,34 @@ function getNestedValue(obj: unknown, path: string): string {
   return current;
 }
 
+function isLocale(value: unknown): value is Locale {
+  return typeof value === "string" && (LOCALES as readonly string[]).includes(value);
+}
+
+function readStoredLocale(): Locale {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (isLocale(stored)) return stored;
+  } catch {
+    // localStorage unavailable — fall through to default
+  }
+  return "en";
+}
+
+function subscribe(callback: () => void): () => void {
+  const onStorage = (event: StorageEvent) => {
+    if (event.key === STORAGE_KEY) callback();
+  };
+  window.addEventListener("storage", onStorage);
+  window.addEventListener(LOCAL_EVENT, callback);
+  return () => {
+    window.removeEventListener("storage", onStorage);
+    window.removeEventListener(LOCAL_EVENT, callback);
+  };
+}
+
+const LOCAL_EVENT = "ejds:locale-change";
+
 interface LocaleContextValue {
   locale: Locale;
   setLocale: (locale: Locale) => void;
@@ -52,35 +81,33 @@ const LocaleContext = createContext<LocaleContextValue>({
 });
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
+  const locale = useSyncExternalStore<Locale>(
+    subscribe,
+    readStoredLocale,
+    () => "en"
+  );
 
+  // Mirror locale into the document so screen readers announce content
+  // in the right language. Runs only on the client after hydration.
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY) as Locale | null;
-      if (stored && (stored === "en" || stored === "pt" || stored === "es")) {
-        setLocaleState(stored);
-        document.documentElement.lang = stored;
-      }
-    } catch {
-      // localStorage unavailable — keep default
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = locale;
     }
-  }, []);
+  }, [locale]);
 
   const setLocale = useCallback((next: Locale) => {
-    setLocaleState(next);
     try {
       localStorage.setItem(STORAGE_KEY, next);
     } catch {
-      // ignore
+      // ignore — best-effort persistence
     }
-    document.documentElement.lang = next;
+    window.dispatchEvent(new Event(LOCAL_EVENT));
   }, []);
 
   const t = useCallback(
     (key: string): string => {
       const val = getNestedValue(dicts[locale], key);
       if (val === key && locale !== "en") {
-        // Fallback to EN
         return getNestedValue(dicts.en, key);
       }
       return val;
